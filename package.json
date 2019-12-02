@@ -13,6 +13,7 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.8.0",
     "nuxt": "^2.0.0",
+    "postscribe": "^2.0.8",
     "zuck.js": "^1.5.4"
   },
   "devDependencies": {}
