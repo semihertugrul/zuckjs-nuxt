@@ -27,10 +27,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    { src: "@/plugins/zuck", ssr:false}
-
-  ],
+  plugins: [{ src: "@/plugins/zuck", ssr: false }],
   /*
    ** Nuxt.js dev-modules
    */
