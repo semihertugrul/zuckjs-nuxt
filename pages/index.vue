@@ -98,7 +98,7 @@ export default {
       previousTap: true, // use 1/3 of the screen to navigate to previous item when tap the story
       localStorage: true, // set true to save "seen" position. Element must have a id to save properly.
       reactive: true, // set true if you use frameworks like React to control the timeline (see react.sample.html)
-      stories: this.storyData
+      stories: []
       // callbacks: {
       //   onDataUpdate: function(currentState, callback) {
       //     this.setState(
