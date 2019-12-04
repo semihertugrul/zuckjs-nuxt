@@ -15,6 +15,7 @@ export default {
       }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    // script: [{ src: "~/assets/semih.js" }]
   },
   /*
    ** Customize the progress-bar color
