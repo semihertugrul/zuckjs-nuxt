@@ -15,6 +15,7 @@ export default {
       }
     ],
     link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }]
+    // script: [{ src: "~/assets/semih.js" }]
   },
   /*
    ** Customize the progress-bar color
@@ -27,10 +28,7 @@ export default {
   /*
    ** Plugins to load before mounting the App
    */
-  plugins: [
-    { src: "@/plugins/zuck", ssr:false}
-
-  ],
+  plugins: [{ src: "@/plugins/zuck", ssr: false }],
   /*
    ** Nuxt.js dev-modules
    */

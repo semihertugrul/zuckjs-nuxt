@@ -1,17 +1,10 @@
 <template>
-  <div class="container">
-    <story />
-  </div>
+  <div id="stories"></div>
 </template>
 
 <script>
-import Logo from "~/components/Logo.vue";
-import Story from "~/components/Story.vue";
-
 export default {
-  components: {
-    Story
-  }
+  name: "app"
 };
 </script>
 
