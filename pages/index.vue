@@ -29,7 +29,6 @@
           v-for="storyItem in story.items"
           :key="storyItem.id"
           :data-id="storyItem.id"
-          :data-time="storyItem.time"
           :class="storyItem.seen ? 'seen' : ''"
         >
           <a
@@ -38,6 +37,7 @@
             :data-length="storyItem.length"
             :data-link="storyItem.link"
             :data-linkText="storyItem.linkText"
+            :data-time="storyItem.time"
           >
             <img :src="storyItem.preview" />
           </a>
@@ -61,34 +61,35 @@ export default {
             "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/1.jpg",
           name: "Ramon",
           link: "",
-          lastUpdated: 1575536019111,
+          lastUpdated: 1575637794.095,
+
           items: [
-            {
-              id: "ramon-1",
-              type: "photo",
-              length: 3,
-              src:
-                "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
-              preview:
-                "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
-              link: "",
-              linkText: false,
-              seen: false,
-              time: 1575536019111
-            }
             // {
-            //   id: "ramon-2",
-            //   type: "video",
-            //   length: 0,
+            //   id: "ramon-1",
+            //   type: "photo",
+            //   length: 3,
             //   src:
-            //     "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/2.mp4",
+            //     "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
             //   preview:
-            //     "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/2.jpg",
+            //     "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
             //   link: "",
             //   linkText: false,
             //   seen: false,
-            //   time: 1575536019111
+            //   time: 1575637794.095
             // }
+            {
+              id: "ramon-2",
+              type: "video",
+              length: 0,
+              src:
+                "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/2.mp4",
+              preview:
+                "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/2.jpg",
+              link: "",
+              linkText: false,
+              seen: false,
+              time: 1575637794.095
+            }
             // {
             //   id: "ramon-3",
             //   type: "photo",
@@ -106,18 +107,15 @@ export default {
         }
       ]
     };
-  },
-  beforeMount() {
-    console.warn("semih beforeMount");
-  },
-  mounted() {
-    console.warn("semih mounted");
   }
-  // render(h) {
-  //   return h({
-  //     template: `<div>dfdgfdg</div>`
-  //   });
+
+  // methods: {
+  //   transformData: function(data) {},
+  //   dateConvert: function(dateStr = "2019-11-20T18:56:20.713") {
+  //     return new Date(dateStr).valueOf();
+  //   }
   // }
+
   // render(h) {
   //   console.warn("semih render");
   //   const timelineItems = [];

@@ -19,7 +19,7 @@ Vue.use(
 
     backNative: true, // uses window history to enable back button on browsers/android
     previousTap: true, // use 1/3 of the screen to navigate to previous item when tap the story
-    localStorage: false,
+    localStorage: true,
 
     stories: []
   })
