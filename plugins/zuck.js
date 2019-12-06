@@ -1615,6 +1615,3 @@ try {
     window["ZuckitaDaGalera"] = window["Zuck"] = ZuckJS;
   }
 } catch (error) {}
-$(element).on("Semih Log : ", function(e) {
-  console.log(e);
-});
