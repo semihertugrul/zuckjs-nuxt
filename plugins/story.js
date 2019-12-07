@@ -2,9 +2,9 @@ import Vue from "vue";
 
 // import Zuck from "zuck.js";
 import "~/plugins/Zuck.js";
-
-import "zuck.js/dist/skins/snapgram.min.css";
-import "zuck.js/dist/zuck.min.css";
+import "~/assets/css/snapgram.min.css";
+import "~/assets/css/zuck.min.css";
+import "~/assets/css/story.css";
 
 Vue.use(
   Zuck,
@@ -15,8 +15,8 @@ Vue.use(
     list: false, // displays a timeline instead of carousel
 
     cubeEffect: true, // enables the 3d cube effect when sliding story - may decrease performance
-    autoFullScreen: false, // enables fullscreen on mobile browsers
-
+    autoFullScreen: true, // enables fullscreen on mobile browsers
+    backButton: false,
     backNative: true, // uses window history to enable back button on browsers/android
     previousTap: true, // use 1/3 of the screen to navigate to previous item when tap the story
     localStorage: true,

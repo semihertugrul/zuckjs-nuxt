@@ -224,7 +224,7 @@ try {
         [7200, `1 ${language["hour"]}`, ""], // 60*60*2
         [86400, ` ${language["hours"]}`, 3600], // 60*60*24, 60*60
         [172800, ` ${language["yesterday"]}`, ""], // 60*60*24*2
-        [604800, ` ${language["days"]}`, 86400]
+        [691200, ` ${language["days"]}`, 86400]
       ];
 
       let currentFormat = 1;
@@ -248,9 +248,49 @@ try {
 
       const day = dateObj.getDate();
       const month = dateObj.getMonth();
-      const year = dateObj.getFullYear();
+      let monthName = "";
+      switch (month) {
+        case 0:
+          monthName = "Ocak";
+          break;
+        case 1:
+          monthName = "Şubat";
+          break;
+        case 2:
+          monthName = "Mart";
+          break;
+        case 3:
+          monthName = "Nisan";
+          break;
+        case 4:
+          monthName = "Mayıs";
+          break;
+        case 5:
+          monthName = "Haziran";
+          break;
+        case 6:
+          monthName = "Temmuz";
+          break;
+        case 7:
+          monthName = "Ağustos";
+          break;
+        case 8:
+          monthName = "Eylül";
+          break;
+        case 9:
+          monthName = "Ekim";
+          break;
+        case 10:
+          monthName = "Kasım";
+          break;
+        case 11:
+          monthName = "Aralık";
+          break;
+        default:
+          break;
+      }
 
-      return `${day}/${month + 1}/${year}`;
+      return `${day} ${monthName}`;
     };
 
     /* options */
@@ -430,20 +470,20 @@ try {
         }
       },
       language: {
-        unmute: "Touch to unmute",
+        unmute: "Ses İçin Dokun",
         keyboardTip: "Press space to see next",
-        visitLink: "Visit link",
+        visitLink: "Detayı Gör",
         time: {
-          ago: "ago",
-          hour: "hour ago",
-          hours: "hours ago",
-          minute: "minute ago",
-          minutes: "minutes ago",
+          ago: "önce",
+          hour: "saat önce",
+          hours: "saat önce",
+          minute: "dakika önce",
+          minutes: "dakika önce",
           fromnow: "from now",
-          seconds: "seconds ago",
-          yesterday: "yesterday",
-          tomorrow: "tomorrow",
-          days: "days ago"
+          seconds: "saniye Önce",
+          yesterday: "1 gün önce",
+          tomorrow: "yarın",
+          days: "gün önce"
         }
       }
     };
