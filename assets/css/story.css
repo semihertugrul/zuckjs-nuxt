@@ -18,5 +18,24 @@
 #zuck-modal-content .story-viewer .head .back {
   width: 30px;
   height: 48px;
-  line-height: 73px;
+  line-height: 53px;
+}
+
+.category {
+  display: inherit;
+  background-color: #cfcfcf;
+  border-radius: 7px;
+  padding: 0px 5px;
+  color: #292929;
+  margin-left: 15px;
+  line-height: 21px !important;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 11px;
+  letter-spacing: 0.3px;
+  text-shadow: none;
+}
+
+#zuck-modal-content .story-viewer .head .left .info > * {
+  display: grid;
 }

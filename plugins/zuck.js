@@ -386,6 +386,9 @@ try {
                           )}</strong>
                           <span class="time">${get(storyData, "timeAgo")}</span>
                         </div>
+                        <div class="category">
+                          <span>${get(storyData, "category")}</span>
+                        </div>
                       </div>
 
                       <div class="right">
@@ -470,7 +473,7 @@ try {
         }
       },
       language: {
-        unmute: "Ses İçin Dokun",
+        unmute: "Ses için Dokun",
         keyboardTip: "Press space to see next",
         visitLink: "Detayı Gör",
         time: {
@@ -1181,6 +1184,7 @@ try {
         zuck.data[storyId].id = storyId; // story id
         zuck.data[storyId].photo = story.getAttribute("data-photo"); // story preview (or user photo)
         zuck.data[storyId].name = story.querySelector(".name").innerText;
+        zuck.data[storyId].category = story.getAttribute("data-category");
         zuck.data[storyId].link = story
           .querySelector(".item-link")
           .getAttribute("href");
@@ -1369,231 +1373,233 @@ try {
 
     /* api */
     try {
-      zuck.data = option("stories") || {};
-      zuck.internalData = {};
-      zuck.internalData["seenItems"] = getLocalData("seenItems") || {};
+      if (!!zuck) {
+        zuck.data = option("stories") || {};
+        zuck.internalData = {};
+        zuck.internalData["seenItems"] = getLocalData("seenItems") || {};
 
-      zuck.add = zuck.update = (data, append) => {
-        const storyId = get(data, "id");
-        const storyEl = query(`#${id} [data-id="${storyId}"]`);
-        const items = get(data, "items");
+        zuck.add = zuck.update = (data, append) => {
+          const storyId = get(data, "id");
+          const storyEl = query(`#${id} [data-id="${storyId}"]`);
+          const items = get(data, "items");
 
-        let story = undefined;
-        let preview = false;
+          let story = undefined;
+          let preview = false;
 
-        if (items[0]) {
-          preview = items[0]["preview"] || "";
-        }
-
-        if (zuck.internalData["seenItems"][storyId] === true) {
-          data.seen = true;
-        }
-
-        data.currentPreview = preview;
-
-        if (!storyEl) {
-          let storyItem = document.createElement("div");
-          storyItem.innerHTML = option("template", "timelineItem")(data);
-
-          story = storyItem.firstElementChild;
-        } else {
-          story = storyEl;
-        }
-
-        if (data["seen"] === false) {
-          zuck.internalData["seenItems"][storyId] = false;
-
-          saveLocalData("seenItems", zuck.internalData["seenItems"]);
-        }
-
-        story.setAttribute("data-id", storyId);
-        story.setAttribute("data-photo", get(data, "photo"));
-        story.setAttribute("data-last-updated", get(data, "lastUpdated"));
-
-        parseStory(story);
-
-        if (!storyEl && !option("reactive")) {
-          if (append) {
-            timeline.appendChild(story);
-          } else {
-            prepend(timeline, story);
+          if (items[0]) {
+            preview = items[0]["preview"] || "";
           }
-        }
 
-        each(items, (i, item) => {
-          zuck.addItem(storyId, item, append);
-        });
-
-        if (!append) {
-          updateStorySeenPosition();
-        }
-      };
-
-      zuck.next = () => {
-        modal.next();
-      };
-
-      zuck.remove = storyId => {
-        const story = query(`#${id} > [data-id="${storyId}"]`);
-
-        story.parentNode.removeChild(story);
-      };
-
-      zuck.addItem = (storyId, data, append) => {
-        const story = query(`#${id} > [data-id="${storyId}"]`);
-
-        if (!option("reactive")) {
-          const li = document.createElement("li");
-          const el = story.querySelectorAll(".items")[0];
-
-          li.className = get(data, "seen") ? "seen" : "";
-          li.setAttribute("data-id", get(data, "id"));
-
-          // wow, too much jsx
-          li.innerHTML = option("template", "timelineStoryItem")(data);
-
-          if (append) {
-            el.appendChild(li);
-          } else {
-            prepend(el, li);
+          if (zuck.internalData["seenItems"][storyId] === true) {
+            data.seen = true;
           }
-        }
 
-        parseItems(story);
-      };
+          data.currentPreview = preview;
 
-      zuck.removeItem = (storyId, itemId) => {
-        const item = query(
-          `#${id} > [data-id="${storyId}"] [data-id="${itemId}"]`
-        );
+          if (!storyEl) {
+            let storyItem = document.createElement("div");
+            storyItem.innerHTML = option("template", "timelineItem")(data);
 
-        if (!option("reactive")) {
-          timeline.parentNode.removeChild(item);
-        }
-      };
+            story = storyItem.firstElementChild;
+          } else {
+            story = storyEl;
+          }
 
-      zuck.navigateItem = zuck.nextItem = (direction, event) => {
-        const currentStory = zuck.internalData["currentStory"];
-        const currentItem = zuck.data[currentStory]["currentItem"];
-        const storyViewer = query(
-          `#zuck-modal .story-viewer[data-story-id="${currentStory}"]`
-        );
-        const directionNumber = direction === "previous" ? -1 : 1;
+          if (data["seen"] === false) {
+            zuck.internalData["seenItems"][storyId] = false;
 
-        if (!storyViewer || storyViewer.touchMove === 1) {
-          return false;
-        }
+            saveLocalData("seenItems", zuck.internalData["seenItems"]);
+          }
 
-        const currentItemElements = storyViewer.querySelectorAll(
-          `[data-index="${currentItem}"]`
-        );
-        const currentPointer = currentItemElements[0];
-        const currentItemElement = currentItemElements[1];
+          story.setAttribute("data-id", storyId);
+          story.setAttribute("data-photo", get(data, "photo"));
+          story.setAttribute("data-last-updated", get(data, "lastUpdated"));
 
-        const navigateItem = currentItem + directionNumber;
-        const nextItems = storyViewer.querySelectorAll(
-          `[data-index="${navigateItem}"]`
-        );
-        const nextPointer = nextItems[0];
-        const nextItem = nextItems[1];
+          parseStory(story);
 
-        if (storyViewer && nextPointer && nextItem) {
-          const navigateItemCallback = function() {
-            if (direction === "previous") {
-              currentPointer.classList.remove("seen");
-              currentItemElement.classList.remove("seen");
+          if (!storyEl && !option("reactive")) {
+            if (append) {
+              timeline.appendChild(story);
             } else {
-              currentPointer.classList.add("seen");
-              currentItemElement.classList.add("seen");
+              prepend(timeline, story);
             }
-
-            currentPointer.classList.remove("active");
-            currentItemElement.classList.remove("active");
-
-            nextPointer.classList.remove("seen");
-            nextPointer.classList.add("active");
-
-            nextItem.classList.remove("seen");
-            nextItem.classList.add("active");
-
-            each(storyViewer.querySelectorAll(".time"), (i, el) => {
-              el.innerText = timeAgo(nextItem.getAttribute("data-time"));
-            });
-
-            zuck.data[currentStory]["currentItem"] =
-              zuck.data[currentStory]["currentItem"] + directionNumber;
-
-            playVideoItem(storyViewer, nextItems, event);
-          };
-
-          let callback = option("callbacks", "onNavigateItem");
-          callback = !callback
-            ? option("callbacks", "onNextItem")
-            : option("callbacks", "onNavigateItem");
-
-          callback(
-            currentStory,
-            nextItem.getAttribute("data-story-id"),
-            navigateItemCallback
-          );
-        } else if (storyViewer) {
-          if (direction !== "previous") {
-            modal.next(event);
           }
-        }
-      };
-      const init = function() {
-        if (timeline && timeline.querySelector(".story")) {
-          each(timeline.querySelectorAll(".story"), (storyIndex, story) => {
-            parseStory(story);
+
+          each(items, (i, item) => {
+            zuck.addItem(storyId, item, append);
           });
-        }
 
-        if (option("backNative")) {
-          if (window.location.hash === `#!${id}`) {
-            window.location.hash = "";
+          if (!append) {
+            updateStorySeenPosition();
+          }
+        };
+
+        zuck.next = () => {
+          modal.next();
+        };
+
+        zuck.remove = storyId => {
+          const story = query(`#${id} > [data-id="${storyId}"]`);
+
+          story.parentNode.removeChild(story);
+        };
+
+        zuck.addItem = (storyId, data, append) => {
+          const story = query(`#${id} > [data-id="${storyId}"]`);
+
+          if (!option("reactive")) {
+            const li = document.createElement("li");
+            const el = story.querySelectorAll(".items")[0];
+
+            li.className = get(data, "seen") ? "seen" : "";
+            li.setAttribute("data-id", get(data, "id"));
+
+            // wow, too much jsx
+            li.innerHTML = option("template", "timelineStoryItem")(data);
+
+            if (append) {
+              el.appendChild(li);
+            } else {
+              prepend(el, li);
+            }
           }
 
-          window.addEventListener(
-            "popstate",
-            e => {
-              if (window.location.hash !== `#!${id}`) {
-                window.location.hash = "";
-              }
-            },
-            false
+          parseItems(story);
+        };
+
+        zuck.removeItem = (storyId, itemId) => {
+          const item = query(
+            `#${id} > [data-id="${storyId}"] [data-id="${itemId}"]`
           );
-        }
 
-        if (!option("reactive")) {
-          let seenItems = getLocalData("seenItems");
+          if (!option("reactive")) {
+            timeline.parentNode.removeChild(item);
+          }
+        };
 
-          for (let key in seenItems) {
-            if (seenItems.hasOwnProperty(key)) {
-              if (zuck.data[key]) {
-                zuck.data[key].seen = seenItems[key];
+        zuck.navigateItem = zuck.nextItem = (direction, event) => {
+          const currentStory = zuck.internalData["currentStory"];
+          const currentItem = zuck.data[currentStory]["currentItem"];
+          const storyViewer = query(
+            `#zuck-modal .story-viewer[data-story-id="${currentStory}"]`
+          );
+          const directionNumber = direction === "previous" ? -1 : 1;
+
+          if (!storyViewer || storyViewer.touchMove === 1) {
+            return false;
+          }
+
+          const currentItemElements = storyViewer.querySelectorAll(
+            `[data-index="${currentItem}"]`
+          );
+          const currentPointer = currentItemElements[0];
+          const currentItemElement = currentItemElements[1];
+
+          const navigateItem = currentItem + directionNumber;
+          const nextItems = storyViewer.querySelectorAll(
+            `[data-index="${navigateItem}"]`
+          );
+          const nextPointer = nextItems[0];
+          const nextItem = nextItems[1];
+
+          if (storyViewer && nextPointer && nextItem) {
+            const navigateItemCallback = function() {
+              if (direction === "previous") {
+                currentPointer.classList.remove("seen");
+                currentItemElement.classList.remove("seen");
+              } else {
+                currentPointer.classList.add("seen");
+                currentItemElement.classList.add("seen");
+              }
+
+              currentPointer.classList.remove("active");
+              currentItemElement.classList.remove("active");
+
+              nextPointer.classList.remove("seen");
+              nextPointer.classList.add("active");
+
+              nextItem.classList.remove("seen");
+              nextItem.classList.add("active");
+
+              each(storyViewer.querySelectorAll(".time"), (i, el) => {
+                el.innerText = timeAgo(nextItem.getAttribute("data-time"));
+              });
+
+              zuck.data[currentStory]["currentItem"] =
+                zuck.data[currentStory]["currentItem"] + directionNumber;
+
+              playVideoItem(storyViewer, nextItems, event);
+            };
+
+            let callback = option("callbacks", "onNavigateItem");
+            callback = !callback
+              ? option("callbacks", "onNextItem")
+              : option("callbacks", "onNavigateItem");
+
+            callback(
+              currentStory,
+              nextItem.getAttribute("data-story-id"),
+              navigateItemCallback
+            );
+          } else if (storyViewer) {
+            if (direction !== "previous") {
+              modal.next(event);
+            }
+          }
+        };
+        const init = function() {
+          if (timeline && timeline.querySelector(".story")) {
+            each(timeline.querySelectorAll(".story"), (storyIndex, story) => {
+              parseStory(story);
+            });
+          }
+
+          if (option("backNative")) {
+            if (window.location.hash === `#!${id}`) {
+              window.location.hash = "";
+            }
+
+            window.addEventListener(
+              "popstate",
+              e => {
+                if (window.location.hash !== `#!${id}`) {
+                  window.location.hash = "";
+                }
+              },
+              false
+            );
+          }
+
+          if (!option("reactive")) {
+            let seenItems = getLocalData("seenItems");
+
+            for (let key in seenItems) {
+              if (seenItems.hasOwnProperty(key)) {
+                if (zuck.data[key]) {
+                  zuck.data[key].seen = seenItems[key];
+                }
               }
             }
           }
-        }
 
-        each(option("stories"), (i, item) => {
-          zuck.add(item, true);
-        });
+          each(option("stories"), (i, item) => {
+            zuck.add(item, true);
+          });
 
-        updateStorySeenPosition();
+          updateStorySeenPosition();
 
-        const avatars = option("avatars") ? "user-icon" : "story-preview";
-        const list = option("list") ? "list" : "carousel";
+          const avatars = option("avatars") ? "user-icon" : "story-preview";
+          const list = option("list") ? "list" : "carousel";
 
-        timeline.className += ` stories ${avatars} ${list} ${`${option(
-          "skin"
-        )}`.toLowerCase()}`;
+          timeline.className += ` stories ${avatars} ${list} ${`${option(
+            "skin"
+          )}`.toLowerCase()}`;
 
-        return zuck;
-      };
+          return zuck;
+        };
 
-      return init();
+        return init();
+      }
     } catch (error) {}
   };
 

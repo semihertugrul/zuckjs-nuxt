@@ -8,6 +8,7 @@
       :data-id="story.id"
       :data-last-updated="story.lastUpdated"
       :data-photo="story.photo"
+      :data-category="story.category"
     >
       <a class="item-link" :href="story.link">
         <span class="item-preview">
@@ -62,7 +63,59 @@ export default {
           name: "Soçi 2019",
           link: "",
           lastUpdated: 1575637794.095,
-          category: "",
+          category: "DÜNYA & POLİTİKA",
+          seen: true,
+          items: [
+            {
+              id: "ramon-1",
+              type: "photo",
+              length: 200,
+              src:
+                "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
+              preview:
+                "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
+              link: "",
+              linkText: false,
+              seen: false,
+              time: 1575042980.713
+            }
+            // {
+            //   id: "ramon-2",
+            //   type: "video",
+            //   length: 3,
+            //   src:
+            //     "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/2.mp4",
+            //   preview:
+            //     "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/2.jpg",
+            //   link: "",
+            //   linkText: false,
+            //   seen: false,
+            //   time: 1574956580.713
+            // },
+            // {
+            //   id: "ramon-3",
+            //   type: "photo",
+            //   length: 3,
+            //   src:
+            //     "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/3.png",
+            //   preview:
+            //     "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/3.png",
+            //   link: "",
+            //   linkText: false,
+            //   seen: false,
+            //   time: 1574956580.713
+            // }
+          ]
+        },
+        {
+          id: "semih",
+          photo:
+            "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/1.jpg",
+          name: "semih sffd",
+          link: "",
+          lastUpdated: 1575637794.095,
+          category: "Ekonomi",
+          seen: true,
           items: [
             {
               id: "ramon-1",
@@ -105,66 +158,21 @@ export default {
             }
           ]
         }
-        // {
-        //   id: "semih",
-        //   photo:
-        //     "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/1.jpg",
-        //   name: "semih sffd",
-        //   link: "",
-        //   lastUpdated: 1575637794.095,
-
-        //   items: [
-        //     {
-        //       id: "ramon-1",
-        //       type: "photo",
-        //       length: 200,
-        //       src:
-        //         "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
-        //       preview:
-        //         "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
-        //       link: "",
-        //       linkText: false,
-        //       seen: false,
-        //       time: 1575042980.713
-        //     },
-        //     {
-        //       id: "ramon-2",
-        //       type: "video",
-        //       length: 3,
-        //       src:
-        //         "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/2.mp4",
-        //       preview:
-        //         "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/2.jpg",
-        //       link: "",
-        //       linkText: false,
-        //       seen: false,
-        //       time: 1574956580.713
-        //     },
-        //     {
-        //       id: "ramon-3",
-        //       type: "photo",
-        //       length: 3,
-        //       src:
-        //         "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/3.png",
-        //       preview:
-        //         "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/3.png",
-        //       link: "",
-        //       linkText: false,
-        //       seen: false,
-        //       time: 1574956580.713
-        //     }
-        //   ]
-        // }
       ]
     };
-  }
+  },
 
-  // methods: {
-  //   transformData: function(data) {},
-  //   dateConvert: function(dateStr = "2019-11-20T18:56:20.713") {
-  //     return new Date(dateStr).valueOf();
-  //   }
-  // }
+  methods: {
+    localStorageControl: function(id) {
+      return window.localStorage[`zuck-${id}-seenItems`]
+        ? JSON.parse(window.localStorage[keyName])
+        : false;
+    },
+    transformData: function(data) {},
+    dateConvert: function(dateStr = "2019-11-20T18:56:20.713") {
+      return new Date(dateStr).valueOf();
+    }
+  }
 
   // render(h) {
   //   console.warn("semih render");
