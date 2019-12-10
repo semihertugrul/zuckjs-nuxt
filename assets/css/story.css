@@ -39,3 +39,8 @@
 #zuck-modal-content .story-viewer .head .left .info > * {
   display: grid;
 }
+
+#zuck-modal-content .story-viewer.muted .tip.muted,
+#zuck-modal-content .story-viewer.loading .head .loading {
+  display: none;
+}

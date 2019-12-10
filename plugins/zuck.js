@@ -473,7 +473,7 @@ try {
         }
       },
       language: {
-        unmute: "Ses için Dokun",
+        unmute: "", //Ses için Dokun
         keyboardTip: "Press space to see next",
         visitLink: "Detayı Gör",
         time: {
@@ -1232,7 +1232,6 @@ try {
 
       story.onclick = e => {
         e.preventDefault();
-
         modal.show(storyId);
       };
 
@@ -1414,7 +1413,7 @@ try {
           story.setAttribute("data-id", storyId);
           story.setAttribute("data-photo", get(data, "photo"));
           story.setAttribute("data-last-updated", get(data, "lastUpdated"));
-
+          story.setAttribute("data-category", get(data, "category"));
           parseStory(story);
 
           if (!storyEl && !option("reactive")) {

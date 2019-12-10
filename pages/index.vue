@@ -1,6 +1,6 @@
 <template>
   <div id="stories">
-    <div
+    <!-- <div
       v-for="story in this.storyData"
       :key="story.id"
       class="story"
@@ -10,7 +10,7 @@
       :data-photo="story.photo"
       :data-category="story.category"
     >
-      <a class="item-link" :href="story.link">
+      <a class="item-link" :id="story.id">
         <span class="item-preview">
           <img :src="story.photo" />
         </span>
@@ -44,20 +44,19 @@
           </a>
         </li>
       </ul>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 import "~/plugins/Zuck.js";
+import axios from "axios";
 export default {
   name: "app",
+
   data: function() {
     return {
-      storiesElement: null,
-      storiesApi: null,
       storyData: [],
-
       apiData: [
         {
           id: 1222,
@@ -154,8 +153,57 @@ export default {
               createdDate: "2019-11-20T18:56:20.713"
             }
           ]
+        },
+        {
+          id: 1224,
+          siteId: 4,
+          mainCategory: {
+            id: 1,
+            name: "Teknoloji"
+          },
+          title: "Apple",
+          publishDate: "2019-11-20T18:56:20.713",
+          expirationDate: "2019-12-20T18:56:20.713",
+          createdDate: "2019-11-20T18:56:20.713",
+          updateDate: "2019-11-20T18:56:20.713",
+          user: {
+            id: 1,
+            name: "adem çınar"
+          },
+          status: 1,
+          coverPhotoPath:
+            "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/1.jpg",
+          stories: [
+            {
+              type: "photo",
+              user: {
+                id: 1,
+                name: "yusuf çınar"
+              },
+              url:
+                "https://www.gzt.com/dunya-politika/arnavutluktaki-depremde-olu-ve-yarali-sayisi-artiyor-3514989",
+              filePath:
+                "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
+              createdDate: "2019-11-20T18:56:20.713",
+              isCoverPhoto: true
+            },
+            {
+              type: "video",
+              duration: "05:10",
+              user: {
+                id: 1,
+                name: "taha çınar"
+              },
+              url:
+                "https://www.gzt.com/dunya-politika/arnavutluktaki-depremde-olu-ve-yarali-sayisi-artiyor-3514989",
+              filePath:
+                "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/4.mp4",
+              createdDate: "2019-11-20T18:56:20.713"
+            }
+          ]
         }
-      ]
+      ],
+      tmpData: []
     };
   },
 
@@ -163,21 +211,7 @@ export default {
     this.showData();
   },
 
-  mounted() {
-    new Zuck("stories", {
-      skin: "snapgram", // container class
-      avatars: true, // shows user photo instead of last story item preview
-      paginationArrows: false,
-      list: false, // displays a timeline instead of carousel
-      cubeEffect: true, // enables the 3d cube effect when sliding story - may decrease performance
-      autoFullScreen: true, // enables fullscreen on mobile browsers
-      backButton: false,
-      backNative: true, // uses window history to enable back button on browsers/android
-      previousTap: true, // use 1/3 of the screen to navigate to previous item when tap the story
-      localStorage: true,
-      stories: []
-    });
-  },
+  mounted() {},
 
   methods: {
     localStorageControl: function(id) {
@@ -226,25 +260,38 @@ export default {
       };
     },
 
-    showData: function() {
-      let tmpData = this.apiData
-        .filter(
-          x =>
-            x.status === 1 &&
-            x.siteId === 4 &&
-            this.expirationDateControl(x.expirationDate)
-        )
-        .map(data => this.transformMainData(data));
-
-      this.storyData.push(...tmpData.filter(story => story.seen === false));
-      this.storyData.push(...tmpData.filter(story => story.seen === true));
+    async showData() {
+      await new Promise((resolve, reject) => {
+        resolve(
+          axios.get("http://apisimulator.pho.fm/story").then(response => {
+            this.storyData = response.data
+              .filter(
+                x =>
+                  x.status === 1 &&
+                  x.siteId === 4 &&
+                  this.expirationDateControl(x.expirationDate)
+              )
+              .map(data => this.transformMainData(data));
+            new Zuck("stories", {
+              skin: "snapgram", // container class
+              avatars: true, // shows user photo instead of last story item preview
+              paginationArrows: false,
+              list: false, // displays a timeline instead of carousel
+              cubeEffect: true, // enables the 3d cube effect when sliding story - may decrease performance
+              autoFullScreen: true, // enables fullscreen on mobile browsers
+              backButton: false,
+              backNative: true, // uses window history to enable back button on browsers/android
+              previousTap: true, // use 1/3 of the screen to navigate to previous item when tap the story
+              localStorage: true,
+              reactive: false,
+              stories: this.storyData
+            });
+          })
+        );
+      });
     }
   }
 };
 </script>
 
-<style>
-@import "~/assets/css/snapgram.min.css";
-@import "~/assets/css/zuck.min.css";
-@import "~/assets/css/story.css";
-</style>
+<style></style>
