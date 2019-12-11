@@ -1,55 +1,10 @@
 <template>
-  <div id="stories">
-    <!-- <div
-      v-for="story in this.storyData"
-      :key="story.id"
-      class="story"
-      :class="story.seen ? 'seen' : ''"
-      :data-id="story.id"
-      :data-last-updated="story.lastUpdated"
-      :data-photo="story.photo"
-      :data-category="story.category"
-    >
-      <a class="item-link" :id="story.id">
-        <span class="item-preview">
-          <img :src="story.photo" />
-        </span>
-        <span
-          class="info"
-          itemProp="author"
-          itemScope=""
-          itemType="http://schema.org/Person"
-        >
-          <strong class="name" itemProp="name">{{ story.name }}</strong>
-          <span class="time">{{ story.lastUpdated }}</span>
-        </span>
-      </a>
-
-      <ul class="items">
-        <li
-          v-for="storyItem in story.items"
-          :key="storyItem.id"
-          :data-id="storyItem.id"
-          :class="storyItem.seen ? 'seen' : ''"
-        >
-          <a
-            :href="storyItem.src"
-            :data-type="storyItem.type"
-            :data-length="storyItem.length"
-            :data-link="storyItem.link"
-            :data-linkText="storyItem.linkText"
-            :data-time="storyItem.time"
-          >
-            <img :src="storyItem.preview" />
-          </a>
-        </li>
-      </ul>
-    </div> -->
-  </div>
+  <div id="stories"></div>
 </template>
 
 <script>
-import "~/plugins/Zuck.js";
+// import "~/plugins/Zuck.js";
+import "~/plugins/zuck.min.js";
 import axios from "axios";
 export default {
   name: "app",
@@ -88,7 +43,7 @@ export default {
                 "https://resizer.piri.net/resize.aspx?w=593&h=0&url=/resim/imagecrop/2019/12/09/11/14/resized_8b996-c9a2bc73648ca169175d4743a2c02bb35a76b57c.jpg",
               filePath:
                 "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
-              createdDate: "2019-12-04T18:56:20.713",
+              createdDate: "2019-12-03T12:56:20.713",
               isCoverPhoto: true
             },
             {
@@ -215,8 +170,7 @@ export default {
         //     }
         //   ]
         // }
-      ],
-      tmpData: []
+      ]
     };
   },
 
