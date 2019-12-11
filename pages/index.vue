@@ -88,44 +88,9 @@ export default {
                 "https://resizer.piri.net/resize.aspx?w=593&h=0&url=/resim/imagecrop/2019/12/09/11/14/resized_8b996-c9a2bc73648ca169175d4743a2c02bb35a76b57c.jpg",
               filePath:
                 "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
-              createdDate: "2019-11-20T18:56:20.713",
+              createdDate: "2019-12-04T18:56:20.713",
               isCoverPhoto: true
             },
-            {
-              type: "video",
-              duration: "05:10",
-              user: {
-                id: 1,
-                name: "taha çınar"
-              },
-              url:
-                "https://beta.gzt.com/dunya-politika/turkiye-sinif-atladi-insani-gelismede-en-yuksek-kategoriye-yukseldi-3515759",
-              filePath:
-                "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/2.mp4",
-              createdDate: "2019-11-20T18:56:20.713"
-            }
-          ]
-        },
-        {
-          id: 1223,
-          siteId: 4,
-          mainCategory: {
-            id: 1,
-            name: "Ekonomi"
-          },
-          title: "Soçi 2019",
-          publishDate: "2019-11-20T18:56:20.713",
-          expirationDate: "2019-12-20T18:56:20.713",
-          createdDate: "2019-11-20T18:56:20.713",
-          updateDate: "2019-11-20T18:56:20.713",
-          user: {
-            id: 1,
-            name: "adem çınar"
-          },
-          status: 1,
-          coverPhotoPath:
-            "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/1.jpg",
-          stories: [
             {
               type: "photo",
               user: {
@@ -133,75 +98,123 @@ export default {
                 name: "yusuf çınar"
               },
               url:
-                "https://www.gzt.com/dunya-politika/arnavutluktaki-depremde-olu-ve-yarali-sayisi-artiyor-3514989",
+                "https://resizer.piri.net/resize.aspx?w=593&h=0&url=/resim/imagecrop/2019/12/09/11/14/resized_8b996-c9a2bc73648ca169175d4743a2c02bb35a76b57c.jpg",
               filePath:
-                "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
+                "https://www.dunyaatlasi.com/wp-content/uploads/2018/09/resim-tablo-nasil-okunur.jpg",
               createdDate: "2019-11-20T18:56:20.713",
               isCoverPhoto: true
-            },
-            {
-              type: "video",
-              duration: "05:10",
-              user: {
-                id: 1,
-                name: "taha çınar"
-              },
-              url:
-                "https://www.gzt.com/dunya-politika/arnavutluktaki-depremde-olu-ve-yarali-sayisi-artiyor-3514989",
-              filePath:
-                "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/4.mp4",
-              createdDate: "2019-11-20T18:56:20.713"
             }
-          ]
-        },
-        {
-          id: 1224,
-          siteId: 4,
-          mainCategory: {
-            id: 1,
-            name: "Teknoloji"
-          },
-          title: "Apple",
-          publishDate: "2019-11-20T18:56:20.713",
-          expirationDate: "2019-12-20T18:56:20.713",
-          createdDate: "2019-11-20T18:56:20.713",
-          updateDate: "2019-11-20T18:56:20.713",
-          user: {
-            id: 1,
-            name: "adem çınar"
-          },
-          status: 1,
-          coverPhotoPath:
-            "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/1.jpg",
-          stories: [
-            {
-              type: "photo",
-              user: {
-                id: 1,
-                name: "yusuf çınar"
-              },
-              url:
-                "https://www.gzt.com/dunya-politika/arnavutluktaki-depremde-olu-ve-yarali-sayisi-artiyor-3514989",
-              filePath:
-                "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
-              createdDate: "2019-11-20T18:56:20.713",
-              isCoverPhoto: true
-            },
-            {
-              type: "video",
-              duration: "05:10",
-              user: {
-                id: 1,
-                name: "taha çınar"
-              },
-              url:
-                "https://www.gzt.com/dunya-politika/arnavutluktaki-depremde-olu-ve-yarali-sayisi-artiyor-3514989",
-              filePath:
-                "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/4.mp4",
-              createdDate: "2019-11-20T18:56:20.713"
-            }
+            // {
+            //   type: "video",
+            //   duration: "05:10",
+            //   user: {
+            //     id: 1,
+            //     name: "taha çınar"
+            //   },
+            //   url:
+            //     "https://beta.gzt.com/dunya-politika/turkiye-sinif-atladi-insani-gelismede-en-yuksek-kategoriye-yukseldi-3515759",
+            //   filePath:
+            //     "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/2.mp4",
+            //   createdDate: "2019-11-20T18:56:20.713"
+            // }
           ]
         }
+        // {
+        //   id: 1223,
+        //   siteId: 4,
+        //   mainCategory: {
+        //     id: 1,
+        //     name: "Ekonomi"
+        //   },
+        //   title: "Soçi 2019",
+        //   publishDate: "2019-11-20T18:56:20.713",
+        //   expirationDate: "2019-12-20T18:56:20.713",
+        //   createdDate: "2019-11-20T18:56:20.713",
+        //   updateDate: "2019-11-20T18:56:20.713",
+        //   user: {
+        //     id: 1,
+        //     name: "adem çınar"
+        //   },
+        //   status: 1,
+        //   coverPhotoPath:
+        //     "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/1.jpg",
+        //   stories: [
+        //     {
+        //       type: "photo",
+        //       user: {
+        //         id: 1,
+        //         name: "yusuf çınar"
+        //       },
+        //       url:
+        //         "https://www.gzt.com/dunya-politika/arnavutluktaki-depremde-olu-ve-yarali-sayisi-artiyor-3514989",
+        //       filePath:
+        //         "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
+        //       createdDate: "2019-11-20T18:56:20.713",
+        //       isCoverPhoto: true
+        //     },
+        //     {
+        //       type: "video",
+        //       duration: "05:10",
+        //       user: {
+        //         id: 1,
+        //         name: "taha çınar"
+        //       },
+        //       url:
+        //         "https://www.gzt.com/dunya-politika/arnavutluktaki-depremde-olu-ve-yarali-sayisi-artiyor-3514989",
+        //       filePath:
+        //         "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/4.mp4",
+        //       createdDate: "2019-11-20T18:56:20.713"
+        //     }
+        //   ]
+        // },
+        // {
+        //   id: 1224,
+        //   siteId: 4,
+        //   mainCategory: {
+        //     id: 1,
+        //     name: "Teknoloji"
+        //   },
+        //   title: "Apple",
+        //   publishDate: "2019-11-20T18:56:20.713",
+        //   expirationDate: "2019-12-20T18:56:20.713",
+        //   createdDate: "2019-11-20T18:56:20.713",
+        //   updateDate: "2019-11-20T18:56:20.713",
+        //   user: {
+        //     id: 1,
+        //     name: "adem çınar"
+        //   },
+        //   status: 1,
+        //   coverPhotoPath:
+        //     "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/1.jpg",
+        //   stories: [
+        //     {
+        //       type: "photo",
+        //       user: {
+        //         id: 1,
+        //         name: "yusuf çınar"
+        //       },
+        //       url:
+        //         "https://www.gzt.com/dunya-politika/arnavutluktaki-depremde-olu-ve-yarali-sayisi-artiyor-3514989",
+        //       filePath:
+        //         "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
+        //       createdDate: "2019-11-20T18:56:20.713",
+        //       isCoverPhoto: true
+        //     },
+        //     {
+        //       type: "video",
+        //       duration: "05:10",
+        //       user: {
+        //         id: 1,
+        //         name: "taha çınar"
+        //       },
+        //       url:
+        //         "https://www.gzt.com/dunya-politika/arnavutluktaki-depremde-olu-ve-yarali-sayisi-artiyor-3514989",
+        //       filePath:
+        //         "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/4.mp4",
+        //       createdDate: "2019-11-20T18:56:20.713"
+        //     }
+        //   ]
+        // }
       ],
       tmpData: []
     };
@@ -260,6 +273,7 @@ export default {
       };
     },
 
+    //response.data
     async showData() {
       await new Promise((resolve, reject) => {
         resolve(
@@ -294,4 +308,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+@import "~/assets/css/snapgram.min.css";
+@import "~/assets/css/zuck.min.css";
+@import "~/assets/css/story.css";
+</style>

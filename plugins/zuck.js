@@ -224,7 +224,8 @@ try {
         [7200, `1 ${language["hour"]}`, ""], // 60*60*2
         [86400, ` ${language["hours"]}`, 3600], // 60*60*24, 60*60
         [172800, ` ${language["yesterday"]}`, ""], // 60*60*24*2
-        [691200, ` ${language["days"]}`, 86400]
+        [604800, ` ${language["days"]}`, 86400], // 60*60*24*6, 60*60*24
+        [691200, `1 ${language["week"]}`, ""] //
       ];
 
       let currentFormat = 1;
@@ -486,7 +487,8 @@ try {
           seconds: "saniye Önce",
           yesterday: "1 gün önce",
           tomorrow: "yarın",
-          days: "gün önce"
+          days: "gün önce",
+          week: "hafta önce"
         }
       }
     };
@@ -645,17 +647,18 @@ try {
         const modalSlider = query(`#zuck-modal-slider-${id}`);
         const storyItems = get(storyData, "items");
 
-        storyData.timeAgo =
-          storyItems && storyItems[0]
-            ? timeAgo(get(storyItems[0], "time"))
-            : "";
-
         let htmlItems = "";
         let pointerItems = "";
 
         const storyId = get(storyData, "id");
         const slides = document.createElement("div");
-        const currentItem = get(storyData, "currentItem") || 0;
+        const seen = !!get(storyData, "seen");
+        const currentItem = seen ? 0 : get(storyData, "currentItem") || 0; //get(storyData, "currentItem") || 0;
+
+        storyData.timeAgo = storyItems
+          ? timeAgo(get(storyItems[currentItem], "time"))
+          : "";
+
         const exists = query(
           `#zuck-modal .story-viewer[data-story-id="${storyId}"]`
         );
@@ -989,7 +992,8 @@ try {
             modalContent.innerHTML = `<div id="zuck-modal-slider-${id}" class="slider"></div>`;
 
             const storyData = zuck.data[storyId];
-            const currentItem = storyData["currentItem"] || 0;
+            const seen = !!get(storyData, "seen");
+            const currentItem = seen ? 0 : storyData["currentItem"] || 0; // storyData["currentItem"] || 0;
             const modalSlider = query(`#zuck-modal-slider-${id}`);
 
             createStoryTouchEvents(modalSlider);

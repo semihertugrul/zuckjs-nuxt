@@ -1,11 +1,11 @@
-import Vue from "vue";
+// import Vue from "vue";
 
 // import Zuck from "zuck.js";
 
-import "~/plugins/Zuck.js";
-import "~/assets/css/snapgram.min.css";
-import "~/assets/css/zuck.min.css";
-import "~/assets/css/story.css";
+// import "~/plugins/Zuck.js";
+// import "~/assets/css/snapgram.min.css";
+// import "~/assets/css/zuck.min.css";
+// import "~/assets/css/story.css";
 
 // Vue.use(
 //   Zuck,
