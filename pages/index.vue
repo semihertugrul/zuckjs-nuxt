@@ -1,195 +1,26 @@
 <template>
-  <div id="stories"></div>
+  <story v-if="this.data.length > 0" :storyData="this.data" />
 </template>
 
 <script>
-// import "~/plugins/Zuck.js";
-import "~/plugins/zuck.min.js";
 import axios from "axios";
+import story from "./story";
 export default {
   name: "app",
-
-  data: function() {
+  components: {
+    story
+  },
+  data() {
     return {
-      storyData: [],
-      apiData: [
-        {
-          id: 1222,
-          siteId: 4,
-          mainCategory: {
-            id: 1,
-            name: "Gündem"
-          },
-          title: "Bu Sabah",
-          publishDate: "2019-11-20T18:56:20.713",
-          expirationDate: "2019-12-20T18:56:20.713",
-          createdDate: "2019-11-20T18:56:20.713",
-          updateDate: "2019-11-20T18:56:20.713",
-          user: {
-            id: 1,
-            name: "adem çınar"
-          },
-          status: 1,
-          coverPhotoPath:
-            "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/1.jpg",
-          stories: [
-            {
-              type: "photo",
-              user: {
-                id: 1,
-                name: "yusuf çınar"
-              },
-              url:
-                "https://resizer.piri.net/resize.aspx?w=593&h=0&url=/resim/imagecrop/2019/12/09/11/14/resized_8b996-c9a2bc73648ca169175d4743a2c02bb35a76b57c.jpg",
-              filePath:
-                "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
-              createdDate: "2019-12-03T12:56:20.713",
-              isCoverPhoto: true
-            },
-            {
-              type: "photo",
-              user: {
-                id: 1,
-                name: "yusuf çınar"
-              },
-              url:
-                "https://resizer.piri.net/resize.aspx?w=593&h=0&url=/resim/imagecrop/2019/12/09/11/14/resized_8b996-c9a2bc73648ca169175d4743a2c02bb35a76b57c.jpg",
-              filePath:
-                "https://www.dunyaatlasi.com/wp-content/uploads/2018/09/resim-tablo-nasil-okunur.jpg",
-              createdDate: "2019-11-20T18:56:20.713",
-              isCoverPhoto: true
-            }
-            // {
-            //   type: "video",
-            //   duration: "05:10",
-            //   user: {
-            //     id: 1,
-            //     name: "taha çınar"
-            //   },
-            //   url:
-            //     "https://beta.gzt.com/dunya-politika/turkiye-sinif-atladi-insani-gelismede-en-yuksek-kategoriye-yukseldi-3515759",
-            //   filePath:
-            //     "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/2.mp4",
-            //   createdDate: "2019-11-20T18:56:20.713"
-            // }
-          ]
-        }
-        // {
-        //   id: 1223,
-        //   siteId: 4,
-        //   mainCategory: {
-        //     id: 1,
-        //     name: "Ekonomi"
-        //   },
-        //   title: "Soçi 2019",
-        //   publishDate: "2019-11-20T18:56:20.713",
-        //   expirationDate: "2019-12-20T18:56:20.713",
-        //   createdDate: "2019-11-20T18:56:20.713",
-        //   updateDate: "2019-11-20T18:56:20.713",
-        //   user: {
-        //     id: 1,
-        //     name: "adem çınar"
-        //   },
-        //   status: 1,
-        //   coverPhotoPath:
-        //     "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/1.jpg",
-        //   stories: [
-        //     {
-        //       type: "photo",
-        //       user: {
-        //         id: 1,
-        //         name: "yusuf çınar"
-        //       },
-        //       url:
-        //         "https://www.gzt.com/dunya-politika/arnavutluktaki-depremde-olu-ve-yarali-sayisi-artiyor-3514989",
-        //       filePath:
-        //         "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
-        //       createdDate: "2019-11-20T18:56:20.713",
-        //       isCoverPhoto: true
-        //     },
-        //     {
-        //       type: "video",
-        //       duration: "05:10",
-        //       user: {
-        //         id: 1,
-        //         name: "taha çınar"
-        //       },
-        //       url:
-        //         "https://www.gzt.com/dunya-politika/arnavutluktaki-depremde-olu-ve-yarali-sayisi-artiyor-3514989",
-        //       filePath:
-        //         "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/4.mp4",
-        //       createdDate: "2019-11-20T18:56:20.713"
-        //     }
-        //   ]
-        // },
-        // {
-        //   id: 1224,
-        //   siteId: 4,
-        //   mainCategory: {
-        //     id: 1,
-        //     name: "Teknoloji"
-        //   },
-        //   title: "Apple",
-        //   publishDate: "2019-11-20T18:56:20.713",
-        //   expirationDate: "2019-12-20T18:56:20.713",
-        //   createdDate: "2019-11-20T18:56:20.713",
-        //   updateDate: "2019-11-20T18:56:20.713",
-        //   user: {
-        //     id: 1,
-        //     name: "adem çınar"
-        //   },
-        //   status: 1,
-        //   coverPhotoPath:
-        //     "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/users/1.jpg",
-        //   stories: [
-        //     {
-        //       type: "photo",
-        //       user: {
-        //         id: 1,
-        //         name: "yusuf çınar"
-        //       },
-        //       url:
-        //         "https://www.gzt.com/dunya-politika/arnavutluktaki-depremde-olu-ve-yarali-sayisi-artiyor-3514989",
-        //       filePath:
-        //         "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/1.jpg",
-        //       createdDate: "2019-11-20T18:56:20.713",
-        //       isCoverPhoto: true
-        //     },
-        //     {
-        //       type: "video",
-        //       duration: "05:10",
-        //       user: {
-        //         id: 1,
-        //         name: "taha çınar"
-        //       },
-        //       url:
-        //         "https://www.gzt.com/dunya-politika/arnavutluktaki-depremde-olu-ve-yarali-sayisi-artiyor-3514989",
-        //       filePath:
-        //         "https://raw.githubusercontent.com/ramon82/assets/master/zuck.js/stories/4.mp4",
-        //       createdDate: "2019-11-20T18:56:20.713"
-        //     }
-        //   ]
-        // }
-      ]
+      data: []
     };
   },
 
-  beforeMount() {
+  created() {
     this.showData();
   },
 
-  mounted() {},
-
   methods: {
-    localStorageControl: function(id) {
-      const keyName = `zuck-stories-seenItems`;
-      if (window.localStorage[keyName]) {
-        return !!JSON.parse(window.localStorage[keyName])[id];
-      } else {
-        return false;
-      }
-    },
-
     dateConvert: function(dateStr) {
       return new Date(dateStr).valueOf() / 1000;
     },
@@ -220,19 +51,18 @@ export default {
         link: "",
         lastUpdated: this.dateConvert(data.createdDate),
         category: data.mainCategory.name,
-        seen: this.localStorageControl(data.id),
+        seen: false,
         items: data.stories.map((item, i) =>
           this.transformItemData(data.id, item, i + 1)
         )
       };
     },
 
-    //response.data
     async showData() {
       await new Promise((resolve, reject) => {
         resolve(
           axios.get("http://apisimulator.pho.fm/story").then(response => {
-            this.storyData = response.data
+            this.data = response.data
               .filter(
                 x =>
                   x.status === 1 &&
@@ -240,20 +70,6 @@ export default {
                   this.expirationDateControl(x.expirationDate)
               )
               .map(data => this.transformMainData(data));
-            new Zuck("stories", {
-              skin: "snapgram", // container class
-              avatars: true, // shows user photo instead of last story item preview
-              paginationArrows: false,
-              list: false, // displays a timeline instead of carousel
-              cubeEffect: true, // enables the 3d cube effect when sliding story - may decrease performance
-              autoFullScreen: true, // enables fullscreen on mobile browsers
-              backButton: false,
-              backNative: true, // uses window history to enable back button on browsers/android
-              previousTap: true, // use 1/3 of the screen to navigate to previous item when tap the story
-              localStorage: true,
-              reactive: false,
-              stories: this.storyData
-            });
           })
         );
       });
@@ -262,8 +78,4 @@ export default {
 };
 </script>
 
-<style>
-@import "~/assets/css/snapgram.min.css";
-@import "~/assets/css/zuck.min.css";
-@import "~/assets/css/story.css";
-</style>
+<style></style>

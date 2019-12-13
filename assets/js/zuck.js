@@ -1,11 +1,4 @@
 try {
-  /*
-    zuck.js
-    https://github.com/ramon82/zuck.js
-    MIT License
-*/
-
-  /* Utilities */
   const query = function(qs) {
     return document.querySelectorAll(qs)[0];
   };
@@ -1197,7 +1190,6 @@ try {
         );
         zuck.data[storyId].seen = seen;
 
-        // Semih : Değişiklik başladı
         const storyItems = document.querySelectorAll(
           `#${id} [data-id="${storyId}"] .items > li`
         );
@@ -1223,11 +1215,6 @@ try {
         if (callback) {
           callback(zuck.data, () => {});
         }
-        // Semih : Değişiklik bitti
-        // if(!zuck.data[storyId].items) {
-        //   zuck.data[storyId].items = [];
-        //   zuck.data[storyId].noItems = true;
-        // }
       } catch (e) {
         zuck.data[storyId] = {
           items: []
